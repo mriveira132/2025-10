@@ -1,21 +1,23 @@
 <div class="recipe-detail">
   <h2>{{ recipe.nombre }}</h2>
-  <img
-    class="recipe-detail-img"
-    [src]="recipe.imagen"
-    alt="{{ recipe.imagen }}"
-  />
+  <img class="recipe-detail-img" [src]="recipe.imagen" alt="{{ recipe.imagen }}" />
   <p><strong>Porciones:</strong> {{ recipe.porciones }}</p>
   <p><strong>Tiempo:</strong> {{ recipe.tiempo_minutos }} min</p>
   <h3>Ingredientes</h3>
-  <app-ingredient-list
-    [ingredients]="recipe.ingredientes"
-  ></app-ingredient-list>
-
+  <ul>
+  <li *ngFor="let ing of recipe.ingredientes">
+    {{ ing.nombre }}: {{ ing.cantidad }}
+  </li>
+</ul>
+<p *ngIf="mayorIngrediente">
+  <strong>Ingrediente con mayor cantidad:</strong>
+  {{ mayorIngrediente.nombre }} ({{ mayorIngrediente.cantidad }})
+</p>
   <h3>Pasos</h3>
   <ol>
-    <li *ngFor="let step of recipe.pasos">
-      {{ step }}
+    <li *ngFor="let paso of recipe.pasos">
+      {{ paso }}
     </li>
   </ol>
+  <button (click)="volver()">Regresar</button>
 </div>

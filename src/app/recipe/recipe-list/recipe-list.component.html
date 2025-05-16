@@ -1,31 +1,14 @@
-<div>
-  <div>
-    <div *ngIf="selected">
-      <app-recipe-detail [recipe]="selectedRecipe"></app-recipe-detail>
+<div class="container mt-4">
+  <div class="row">
+    <div class="col-3" *ngFor="let recipe of recipes">
+      <div class="p-2 border bg-white mb-3">
+        <img [src]="recipe.imagen" alt="{{ recipe.nombre }}" width="100%" />
+        <h5>{{ recipe.nombre }}</h5>
+        <p>Porciones: {{ recipe.porciones }}</p>
+        <p>Tiempo: {{ recipe.tiempo_minutos }} min</p>
+        <p>Ingredientes: {{ contarIngredientes(recipe) }}</p>
+        <button class="btn btn-sm btn-primary" (click)="verDetalle(recipe.id)">Ver</button>
+      </div>
     </div>
-    <table>
-      <thead>
-        <tr>
-          <th>Receta</th>
-          <th>Imagen</th>
-          <th>Porciones</th>
-          <th>Tiempo</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let recipe of recipes" (click)="onSelect(recipe)">
-          <td>{{ recipe.nombre }}</td>
-          <td>
-            <img
-              class="recipe-img"
-              [src]="recipe.imagen"
-              alt="{{ recipe.imagen }}"
-            />
-          </td>
-          <td>{{ recipe.porciones }}</td>
-          <td>{{ recipe.tiempo_minutos }} min</td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
